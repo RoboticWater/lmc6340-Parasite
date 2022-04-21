@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #main-video {
+        position: fixed;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        background: #000;
+    }
+
+    main {
+        position: relative;
+        height: 100vh;
+        background: #0005;
+    }
+
+    .title {
+        color: #fff;
+        font-family: 'IBM Plex Sans', sans-serif;
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-transform: uppercase;
+        flex-direction: column;
+    }
+
+    .title span {
+        font-size: 4rem;
+        font-family: 'IBM Plex Serif', serif;
+        font-style: italic;
+        font-weight: 300;
+    }
+
+    .title span:last-child {
+        align-self: flex-end;
+    }
+
+    h1 {
+        font-size: 15rem;
+        text-align: center;
+        margin: 0;
+        line-height: 80%;
+    }
+
+    .enter {
+        position: absolute;
+        bottom: 20vh;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'IBM Plex Serif', serif;
+        padding: 10px 20px;
+        font-size: 2rem;
+        color: #fff;
+        cursor: pointer;
+        font-style: italic;
+        font-weight: 300;
+        letter-spacing: 4px;
+    }
+
+    .enter:hover .highlight {
+        right: 0;
+    }
+
+    .highlight {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 100%;
+        background: #fff;
+        color: #000;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: right 0.3s cubic-bezier(.33, .32, .09, .95);
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        /* box-sizing: border-box; */
+        /* padding: 10px 20px; */
+    }
+
+    .highlight span {
+        margin: 10px 20px;
+    }
+</style>
+
+<body>
+    <video autoplay muted loop id="main-video">
+        <source src="TitleVideo.mp4" type="video/mp4">
+    </video>
+    <main>
+        <div class="title">
+            <span>How does</span>
+            <h1>Parasite</h1>
+            <span>Work?</span>
+        </div>
+        <div class="enter">
+            <span>Enter the Metaverse</span>
+            <span class="highlight">
+                <span>Enter the Metaverse</span>
+            </span>
+        </div>
+    </main>
+</body>
+
+</html>
