@@ -1,126 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Serif:ital,wght@1,300&display=swap");
     #main-video {
-        position: fixed;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
+      position: fixed;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
     }
 
     body {
-        padding: 0;
-        margin: 0;
-        background: #000;
+      padding: 0;
+      margin: 0;
+      background: #000;
+      overflow-x: hidden;
     }
 
     main {
-        position: relative;
-        height: 100vh;
-        background: #0005;
+      position: relative;
+      height: 100vh;
+      background: #0005;
     }
 
     .title {
-        color: #fff;
-        font-family: 'IBM Plex Sans', sans-serif;
-        display: flex;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-transform: uppercase;
-        flex-direction: column;
+      color: #fff;
+      font-family: "IBM Plex Sans", sans-serif;
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-transform: uppercase;
+      flex-direction: column;
+      animation: title-intro 1s cubic-bezier(0.33, 0.45, 0.37, 1);
     }
 
     .title span {
-        font-size: 4rem;
-        font-family: 'IBM Plex Serif', serif;
-        font-style: italic;
-        font-weight: 300;
+      font-size: 4rem;
+      font-family: "IBM Plex Serif", serif;
+      font-style: italic;
+      font-weight: 300;
+      padding: 0 15px;
+      transition: all 0.1s ease;
+      animation: title-intro-padding 1s cubic-bezier(0.33, 0.45, 0.37, 1);
     }
 
     .title span:last-child {
-        align-self: flex-end;
+      align-self: flex-end;
     }
 
     h1 {
-        font-size: 15rem;
-        text-align: center;
-        margin: 0;
-        line-height: 80%;
+      font-size: 15rem;
+      text-align: center;
+      margin: 0;
+      line-height: 80%;
+      transition: all 0.1s ease;
     }
 
     .enter {
-        position: absolute;
-        bottom: 20vh;
-        left: 50%;
-        transform: translateX(-50%);
-        font-family: 'IBM Plex Serif', serif;
-        padding: 10px 20px;
-        font-size: 2rem;
-        color: #fff;
-        cursor: pointer;
-        font-style: italic;
-        font-weight: 300;
-        letter-spacing: 4px;
+      position: absolute;
+      bottom: 20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "IBM Plex Serif", serif;
+      padding: 10px 20px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 4px;
+      white-space: nowrap;
+      transition: all 0.1s ease;
     }
 
     .enter:hover .highlight {
-        right: 0;
+      right: 0;
     }
 
     .highlight {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 100%;
-        background: #fff;
-        color: #000;
-        overflow: hidden;
-        white-space: nowrap;
-        transition: right 0.3s cubic-bezier(.33, .32, .09, .95);
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
-        /* box-sizing: border-box; */
-        /* padding: 10px 20px; */
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 100%;
+      background: #fff;
+      color: #000;
+      overflow: hidden;
+      transition: right 0.3s cubic-bezier(0.33, 0.32, 0.09, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      /* box-sizing: border-box; */
+      /* padding: 10px 20px; */
     }
 
     .highlight span {
-        margin: 10px 20px;
+      margin: 10px 20px;
     }
-</style>
 
-<body>
+    @keyframes title-intro {
+      from {
+        transform: translate(-50%, -35%);
+        /* transform: translate(-50%, -50%) scale(0.8); */
+        opacity: 0;
+      }
+      to {
+        transform: translate(-50%, -50%);
+        /* transform: translate(-50%, -50%) scale(1); */
+        opacity: 1;
+      }
+    }
+
+    @keyframes title-intro-padding {
+      from {
+        margin: 0 -100px;
+      }
+      to {
+        margin: 0 0;
+      }
+    }
+
+    @media screen and (max-width: 1240px) {
+      .title span {
+        font-size: 5vw;
+        padding: 0 1.5vw;
+      }
+      .title h1 {
+        font-size: 20vw;
+      }
+      .enter {
+        font-size: 5vw;
+      }
+    }
+  </style>
+
+  <body>
     <video autoplay muted loop id="main-video">
-        <source src="TitleVideo.mp4" type="video/mp4">
+      <source src="TitleVideo-1.mp4" type="video/mp4" />
     </video>
     <main>
-        <div class="title">
-            <span>How does</span>
-            <h1>Parasite</h1>
-            <span>Work?</span>
-        </div>
-        <div class="enter">
-            <span>Enter the Metaverse</span>
-            <span class="highlight">
-                <span>Enter the Metaverse</span>
-            </span>
-        </div>
+      <div class="title">
+        <span>How does</span>
+        <h1>Parasite</h1>
+        <span>Work?</span>
+      </div>
+      <div class="enter">
+        <span>Enter the Metaverse</span>
+        <span class="highlight">
+          <span>Enter the Metaverse</span>
+        </span>
+      </div>
     </main>
-</body>
-
+  </body>
 </html>
