@@ -25,6 +25,7 @@
       margin: 0;
       background: #000;
       overflow-x: hidden;
+      font-family: "IBM Plex Sans", sans-serif;
     }
 
     ::selection {
@@ -35,14 +36,16 @@
     }
 
     main {
-      position: relative;
-      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: #0005;
     }
 
     .title {
       color: #fff;
-      font-family: "IBM Plex Sans", sans-serif;
       display: flex;
       position: absolute;
       top: 50%;
@@ -76,8 +79,8 @@
     }
 
     .enter {
-      position: absolute;
-      bottom: 20vh;
+      position: fixed;
+      bottom: 15vh;
       left: 50%;
       transform: translateX(-50%);
       font-family: "IBM Plex Serif", serif;
@@ -90,6 +93,7 @@
       letter-spacing: 4px;
       white-space: nowrap;
       transition: all 0.1s ease;
+      z-index: 100;
     }
 
     .enter:hover .highlight {
@@ -115,6 +119,43 @@
 
     .highlight span {
       margin: 10px 20px;
+    }
+
+    article {
+      position: relative;
+      min-height: 100vh;
+      color: #fff;
+      z-index: 10;
+      margin-top: 200px;
+      width: 100%;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      font-family: "IBM Plex Serif", serif;
+      font-style: italic;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .content {
+      max-width: 1124px;
+      margin: 0 auto;
+      padding: 20px;
+      padding-top: 30vh;
+      opacity: 0;
+      /* font-size: 1rem; */
+    }
+
+    .shade {
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000;
     }
 
     @keyframes title-intro {
@@ -163,12 +204,33 @@
         <h1>Parasite</h1>
         <span>Work?</span>
       </div>
-      <div class="enter">
-        <span>Enter the Metaverse</span>
-        <span class="highlight">
-          <span>Enter the Metaverse</span>
-        </span>
-      </div>
     </main>
+    <div class="enter">
+      <span>Enter the Metaverse</span>
+      <span class="highlight">
+        <span>Enter the Metaverse</span>
+      </span>
+    </div>
+    <article>
+      <div class="content">
+        <section id="about">
+          <h2>About</h2>
+          This website is the portal to a VR prototype designed to explore the aesthetic qualities of Bong Joon-Ho's <i>Parasite</i>.
+        </section>
+      </div>
+    </article>
+    <div class="shade"></div>
   </body>
+  <script>
+    var shade, content;
+    window.addEventListener("DOMContentLoaded", (event) => {
+      shade = document.querySelector(".shade");
+      content = document.querySelector(".content");
+    });
+    window.addEventListener("scroll", (event) => {
+      // console.log(window.scrollY);
+      shade.style.opacity = `${window.scrollY / 200}`;
+      content.style.opacity = `${window.scrollY / 200}`;
+    });
+  </script>
 </html>
