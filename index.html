@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Serif:ital,wght@1,300&display=swap");
+
     #main-video {
         position: fixed;
         z-index: -1;
@@ -24,17 +26,31 @@
         padding: 0;
         margin: 0;
         background: #000;
+        overflow-x: hidden;
+        font-family: "IBM Plex Sans", sans-serif;
+    }
+
+    ::selection {
+        background: #ffb7c1;
+        /* WebKit/Blink Browsers */
+    }
+
+    ::-moz-selection {
+        background: #ffb7b7;
+        /* Gecko Browsers */
     }
 
     main {
-        position: relative;
-        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background: #0005;
     }
 
     .title {
         color: #fff;
-        font-family: 'IBM Plex Sans', sans-serif;
         display: flex;
         position: absolute;
         top: 50%;
@@ -42,13 +58,17 @@
         transform: translate(-50%, -50%);
         text-transform: uppercase;
         flex-direction: column;
+        animation: title-intro 1s cubic-bezier(0.33, 0.45, 0.37, 1);
     }
 
     .title span {
         font-size: 4rem;
-        font-family: 'IBM Plex Serif', serif;
+        font-family: "IBM Plex Serif", serif;
         font-style: italic;
         font-weight: 300;
+        padding: 0 15px;
+        transition: all 0.1s ease;
+        animation: title-intro-padding 1s cubic-bezier(0.33, 0.45, 0.37, 1);
     }
 
     .title span:last-child {
@@ -60,14 +80,15 @@
         text-align: center;
         margin: 0;
         line-height: 80%;
+        transition: all 0.1s ease;
     }
 
     .enter {
-        position: absolute;
-        bottom: 20vh;
+        position: fixed;
+        bottom: 15vh;
         left: 50%;
         transform: translateX(-50%);
-        font-family: 'IBM Plex Serif', serif;
+        font-family: "IBM Plex Serif", serif;
         padding: 10px 20px;
         font-size: 2rem;
         color: #fff;
@@ -75,6 +96,9 @@
         font-style: italic;
         font-weight: 300;
         letter-spacing: 4px;
+        white-space: nowrap;
+        transition: all 0.1s ease;
+        z-index: 100;
         text-decoration: none;
     }
 
@@ -91,8 +115,7 @@
         background: #fff;
         color: #000;
         overflow: hidden;
-        white-space: nowrap;
-        transition: right 0.3s cubic-bezier(.33, .32, .09, .95);
+        transition: right 0.3s cubic-bezier(0.33, 0.32, 0.09, 0.95);
         display: flex;
         flex-direction: column;
         justify-items: center;
@@ -103,11 +126,88 @@
     .highlight span {
         margin: 10px 20px;
     }
+
+    article {
+        position: relative;
+        min-height: 100vh;
+        color: #fff;
+        z-index: 10;
+        margin-top: 200px;
+        width: 100%;
+    }
+
+    .content h2 {
+        font-size: 2rem;
+        font-family: "IBM Plex Serif", serif;
+        font-style: italic;
+        text-transform: uppercase;
+        font-weight: 300;
+        margin-bottom: 10px;
+    }
+
+    .content {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 20px;
+        padding-top: 30vh;
+        opacity: 0;
+        line-height: 150%;
+        /* font-size: 1rem; */
+    }
+
+    .shade {
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #000;
+    }
+
+    @keyframes title-intro {
+        from {
+            transform: translate(-50%, -35%);
+            /* transform: translate(-50%, -50%) scale(0.8); */
+            opacity: 0;
+        }
+
+        to {
+            transform: translate(-50%, -50%);
+            /* transform: translate(-50%, -50%) scale(1); */
+            opacity: 1;
+        }
+    }
+
+    @keyframes title-intro-padding {
+        from {
+            margin: 0 -100px;
+        }
+
+        to {
+            margin: 0 0;
+        }
+    }
+
+    @media screen and (max-width: 1240px) {
+        .title span {
+            font-size: 5vw;
+            padding: 0 1.5vw;
+        }
+
+        .title h1 {
+            font-size: 20vw;
+        }
+
+        .enter {
+            font-size: 5vw;
+        }
+    }
 </style>
 
 <body>
     <video autoplay muted loop id="main-video">
-        <source src="TitleVideo.mp4" type="video/mp4">
+        <source src="TitleVideo.mp4" type="video/mp4" />
     </video>
     <main>
         <div class="title">
@@ -115,14 +215,45 @@
             <h1>Parasite</h1>
             <span>Work?</span>
         </div>
-        <a class="enter" href="https://hubs.mozilla.com/QQKWuvQ/remarkable-high-spot
-        ">
-            <span>Enter the Metaverse</span>
-            <span class="highlight">
-                <span>Enter the Metaverse</span>
-            </span>
-        </a>
     </main>
+    <a class="enter" href="https://hubs.mozilla.com/QQKWuvQ/remarkable-high-spot
+    ">
+        <span>Enter the Metaverse</span>
+        <span class="highlight">
+            <span>Enter the Metaverse</span>
+        </span>
+        </div>
+        <article>
+            <div class="content">
+                <section id="about">
+                    <h2>About</h2>
+                    <p>
+                        This website is the portal to a VR prototype designed to explore the aesthetic qualities of Bong
+                        Joon-Ho's <i>Parasite</i>. The content was designed to attune audiences to the visual,
+                        spatial, and textural qualities of the film and reflect upon how they influence our emotions and
+                        grow the film's powerful symbolism.
+                    </p>
+                </section>
+            </div>
+        </article>
+        <div class="shade"></div>
 </body>
+<script>
+    var shade, content;
+    window.addEventListener("DOMContentLoaded", (event) => {
+        shade = document.querySelector(".shade");
+        content = document.querySelector(".content");
+        shade.style.opacity = `${window.scrollY / 200}`;
+        content.style.opacity = `${window.scrollY / 200}`;
+    });
+    window.addEventListener("scroll", (event) => {
+        shade.style.opacity = `${window.scrollY / 200}`;
+        content.style.opacity = `${window.scrollY / 200}`;
+    });
+    window.addEventListener("resize", () => {
+        shade.style.opacity = `${window.scrollY / 200}`;
+        content.style.opacity = `${window.scrollY / 200}`;
+    });
+</script>
 
 </html>
